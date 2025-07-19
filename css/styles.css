@@ -10,6 +10,129 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     overflow-x: hidden;
+    transition: all 0.3s ease;
+}
+
+/* Modo Oscuro */
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+/* Botón de Modo Oscuro */
+.dark-mode-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-mode-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode-btn:active {
+    transform: scale(0.95);
+}
+
+/* Animación de la patita */
+.dark-mode-btn i {
+    transition: transform 0.3s ease;
+}
+
+.dark-mode-btn:hover i {
+    transform: rotate(15deg);
+}
+
+/* Modo oscuro para elementos específicos */
+body.dark-mode .welcome-content,
+body.dark-mode .game-header,
+body.dark-mode .game-content,
+body.dark-mode .levels-header,
+body.dark-mode .progress-header,
+body.dark-mode .progress-content {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .logo h1,
+body.dark-mode .age-selection h2,
+body.dark-mode .player-info h3,
+body.dark-mode .level-title h2,
+body.dark-mode .levels-header h2,
+body.dark-mode .progress-header h2,
+body.dark-mode .achievements h3 {
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .logo p,
+body.dark-mode .level-title p,
+body.dark-mode .player-name,
+body.dark-mode .score,
+body.dark-mode .stars {
+    color: #e8f4fd;
+}
+
+body.dark-mode .question-container {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+body.dark-mode .question-text {
+    color: #fff;
+}
+
+body.dark-mode .stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .stat-card h3,
+body.dark-mode .stat-card span {
+    color: #fff;
+}
+
+body.dark-mode .achievement-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .achievement-info h4 {
+    color: #fff;
+}
+
+body.dark-mode .achievement-info p {
+    color: #ccc;
+}
+
+body.dark-mode .modal-content {
+    background: rgba(30, 30, 30, 0.95);
+    color: #fff;
+}
+
+body.dark-mode .modal-content h2,
+body.dark-mode .modal-content p {
+    color: #fff;
+}
+
+body.dark-mode .completion-stats {
+    background: rgba(102, 126, 234, 0.2);
 }
 
 .container {
@@ -74,6 +197,28 @@ body {
     0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
     40% { transform: translateY(-10px); }
     60% { transform: translateY(-5px); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes happyBounce {
+    0% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.2) rotate(-5deg); }
+    50% { transform: scale(1.3) rotate(0deg); }
+    75% { transform: scale(1.2) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes sadShake {
+    0% { transform: scale(1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(-3deg); }
+    50% { transform: scale(1.1) rotate(3deg); }
+    75% { transform: scale(1.1) rotate(-3deg); }
+    100% { transform: scale(1) rotate(0deg); }
 }
 
 /* Age Selection */
@@ -721,6 +866,65 @@ body {
 }
 
 /* Responsive Design */
+
+/* Tablets (768px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .container {
+        padding: 15px;
+        max-width: 900px;
+    }
+    
+    .logo h1 {
+        font-size: 2.5rem;
+    }
+    
+    .age-buttons {
+        gap: 25px;
+    }
+    
+    .age-btn {
+        min-width: 220px;
+        padding: 25px 35px;
+    }
+    
+    .game-header {
+        padding: 25px;
+    }
+    
+    .answer-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .levels-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 25px;
+    }
+    
+    .progress-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .dark-mode-btn {
+        top: 25px;
+        left: 25px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
+    }
+    
+    /* Feedback emojis responsive for tablets */
+    .question-container span[style*="font-size: 3rem"] {
+        font-size: 3.5rem !important;
+    }
+    
+    .question-container p[style*="font-size: 1.2rem"] {
+        font-size: 1.4rem !important;
+    }
+}
+
+/* Mobile Large (481px - 768px) */
 @media (max-width: 768px) {
     .container {
         padding: 10px;
@@ -733,53 +937,236 @@ body {
     .age-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 20px;
     }
     
     .age-btn {
         min-width: 250px;
+        padding: 25px 30px;
     }
     
     .game-header {
         flex-direction: column;
         text-align: center;
+        gap: 15px;
+        padding: 20px;
     }
     
     .answer-container {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
     
     .levels-grid {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 15px;
     }
     
     .progress-stats {
         grid-template-columns: 1fr;
+        gap: 15px;
     }
     
     .modal-content {
         padding: 30px 20px;
+        max-width: 350px;
+    }
+    
+    .dark-mode-btn {
+        top: 20px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
     }
 }
 
+/* Mobile Small (320px - 480px) */
 @media (max-width: 480px) {
+    .container {
+        padding: 8px;
+    }
+    
     .logo h1 {
         font-size: 1.5rem;
     }
     
+    .logo p {
+        font-size: 1rem;
+    }
+    
+    .age-selection h2 {
+        font-size: 1.4rem;
+    }
+    
     .age-btn {
         min-width: 200px;
-        padding: 20px 30px;
+        padding: 20px 25px;
+        font-size: 1rem;
+    }
+    
+    .age-btn i {
+        font-size: 1.5rem;
+    }
+    
+    .age-btn span {
+        font-size: 1.1rem;
     }
     
     .game-content {
-        padding: 20px;
+        padding: 15px;
+    }
+    
+    .game-header {
+        padding: 15px;
     }
     
     .question-container {
-        padding: 20px;
+        padding: 15px;
     }
     
     .question-text {
+        font-size: 1.1rem;
+    }
+    
+    .answer-btn {
+        padding: 15px;
+        font-size: 1rem;
+    }
+    
+    .control-btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+    
+    .nav-btn {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .levels-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 10px;
+    }
+    
+    .level-btn {
+        padding: 15px 10px;
+        font-size: 0.9rem;
+    }
+    
+    .level-btn i {
         font-size: 1.2rem;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-card h3 {
+        font-size: 1rem;
+    }
+    
+    .stat-card span {
+        font-size: 1.5rem;
+    }
+    
+    .modal-content {
+        padding: 25px 15px;
+        max-width: 300px;
+    }
+    
+    .modal-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .modal-content p {
+        font-size: 1rem;
+    }
+    
+    .dark-mode-btn {
+        top: 15px;
+        left: 15px;
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+    
+    /* Feedback emojis responsive */
+    .question-container span[style*="font-size: 3rem"] {
+        font-size: 2.5rem !important;
+    }
+    
+    .question-container p[style*="font-size: 1.2rem"] {
+        font-size: 1rem !important;
+    }
+}
+
+/* Extra Small Mobile (less than 320px) */
+@media (max-width: 319px) {
+    .container {
+        padding: 5px;
+    }
+    
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+    
+    .age-btn {
+        min-width: 180px;
+        padding: 15px 20px;
+    }
+    
+    .game-content {
+        padding: 10px;
+    }
+    
+    .question-container {
+        padding: 10px;
+    }
+    
+    .question-text {
+        font-size: 1rem;
+    }
+    
+    .dark-mode-btn {
+        top: 10px;
+        left: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Landscape orientation for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .welcome-content {
+        padding: 20px;
+    }
+    
+    .logo {
+        margin-bottom: 20px;
+    }
+    
+    .age-buttons {
+        flex-direction: row;
+        gap: 15px;
+    }
+    
+    .age-btn {
+        min-width: 180px;
+        padding: 15px 20px;
+    }
+    
+    .game-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .dark-mode-btn {
+        top: 15px;
+        left: 15px;
+        width: 45px;
+        height: 45px;
     }
 } 

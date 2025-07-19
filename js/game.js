@@ -5,15 +5,17 @@ class EnglishAdventureGame {
         this.playerName = '';
         this.ageGroup = '';
         this.currentLevel = 1;
-        this.score = 0;
+        this.score = 100; // Puntos iniciales de regalo
         this.stars = 0;
         this.completedLevels = [];
         this.currentQuestionIndex = 0;
         this.questions = [];
         this.achievements = [];
+        this.darkMode = false;
         
         this.initializeGame();
         this.bindEvents();
+        this.initializeDarkMode();
     }
 
     initializeGame() {
@@ -65,6 +67,15 @@ class EnglishAdventureGame {
                 document.getElementById('start-game').click();
             }
         });
+
+        // Dark mode toggle buttons
+        document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+            this.toggleDarkMode();
+        });
+
+        document.getElementById('dark-mode-toggle-game').addEventListener('click', () => {
+            this.toggleDarkMode();
+        });
     }
 
     showPlayerInfo() {
@@ -77,6 +88,9 @@ class EnglishAdventureGame {
         this.loadLevel(this.currentLevel);
         this.showScreen('game-screen');
         this.updateUI();
+        
+        // Mostrar mensaje de bienvenida con puntos iniciales
+        this.showWelcomeMessage();
     }
 
     showWelcome() {
@@ -129,112 +143,112 @@ class EnglishAdventureGame {
             young: {
                 1: [
                     {
-                        question: "What color is the sky?",
+                        question: "¿De qué color es el cielo?",
                         options: ["Blue", "Red", "Green", "Yellow"],
                         correct: 0,
-                        hint: "Look up during the day!",
+                        hint: "¡Mira hacia arriba durante el día!",
                         image: null
                     },
                     {
-                        question: "Which animal says 'meow'?",
+                        question: "¿Qué animal hace 'meow'?",
                         options: ["Dog", "Cat", "Bird", "Fish"],
                         correct: 1,
-                        hint: "It's a small pet that likes to sleep!",
+                        hint: "¡Es una mascota pequeña que le gusta dormir!",
                         image: null
                     },
                     {
-                        question: "How many fingers do you have on one hand?",
+                        question: "¿Cuántos dedos tienes en una mano?",
                         options: ["3", "4", "5", "6"],
                         correct: 2,
-                        hint: "Count your fingers!",
+                        hint: "¡Cuenta tus dedos!",
                         image: null
                     },
                     {
-                        question: "What do you drink when you're thirsty?",
+                        question: "¿Qué bebes cuando tienes sed?",
                         options: ["Food", "Water", "Air", "Light"],
                         correct: 1,
-                        hint: "It's clear and comes from the tap!",
+                        hint: "¡Es transparente y sale del grifo!",
                         image: null
                     },
                     {
-                        question: "What shape is a circle?",
+                        question: "¿Qué forma tiene un círculo?",
                         options: ["Square", "Triangle", "Circle", "Rectangle"],
                         correct: 2,
-                        hint: "It's round like a ball!",
+                        hint: "¡Es redondo como una pelota!",
                         image: null
                     }
                 ],
                 2: [
                     {
-                        question: "What do you wear on your feet?",
+                        question: "¿Qué te pones en los pies?",
                         options: ["Hat", "Shoes", "Gloves", "Scarf"],
                         correct: 1,
-                        hint: "You put them on before going outside!",
+                        hint: "¡Te los pones antes de salir!",
                         image: null
                     },
                     {
-                        question: "Which fruit is yellow and grows on trees?",
+                        question: "¿Qué fruta es amarilla y crece en árboles?",
                         options: ["Apple", "Banana", "Orange", "Grape"],
                         correct: 1,
-                        hint: "Monkeys love to eat this fruit!",
+                        hint: "¡A los monos les encanta comer esta fruta!",
                         image: null
                     },
                     {
-                        question: "What do you use to write?",
+                        question: "¿Qué usas para escribir?",
                         options: ["Fork", "Pencil", "Spoon", "Cup"],
                         correct: 1,
-                        hint: "You hold it in your hand to make marks!",
+                        hint: "¡Lo sostienes en la mano para hacer marcas!",
                         image: null
                     },
                     {
-                        question: "What do you say when you meet someone?",
+                        question: "¿Qué dices cuando conoces a alguien?",
                         options: ["Goodbye", "Hello", "Thank you", "Sorry"],
                         correct: 1,
-                        hint: "It's a friendly greeting!",
+                        hint: "¡Es un saludo amigable!",
                         image: null
                     },
                     {
-                        question: "What do you do when you're tired?",
+                        question: "¿Qué haces cuando estás cansado?",
                         options: ["Eat", "Sleep", "Run", "Jump"],
                         correct: 1,
-                        hint: "You close your eyes and rest!",
+                        hint: "¡Cierras los ojos y descansas!",
                         image: null
                     }
                 ],
                 3: [
                     {
-                        question: "What do you call your mother's mother?",
+                        question: "¿Cómo llamas a la madre de tu madre?",
                         options: ["Sister", "Grandmother", "Aunt", "Cousin"],
                         correct: 1,
-                        hint: "She's older than your mother!",
+                        hint: "¡Es mayor que tu madre!",
                         image: null
                     },
                     {
-                        question: "What do you do with a book?",
+                        question: "¿Qué haces con un libro?",
                         options: ["Eat it", "Read it", "Throw it", "Hide it"],
                         correct: 1,
-                        hint: "You look at the words and pictures!",
+                        hint: "¡Miras las palabras y las imágenes!",
                         image: null
                     },
                     {
-                        question: "What do you use to brush your teeth?",
+                        question: "¿Qué usas para cepillarte los dientes?",
                         options: ["Spoon", "Toothbrush", "Fork", "Knife"],
                         correct: 1,
-                        hint: "It has bristles and toothpaste!",
+                        hint: "¡Tiene cerdas y pasta de dientes!",
                         image: null
                     },
                     {
-                        question: "What do you say when someone gives you something?",
+                        question: "¿Qué dices cuando alguien te da algo?",
                         options: ["Hello", "Goodbye", "Thank you", "Sorry"],
                         correct: 2,
-                        hint: "It's a polite word!",
+                        hint: "¡Es una palabra educada!",
                         image: null
                     },
                     {
-                        question: "What do you do when you're happy?",
+                        question: "¿Qué haces cuando estás feliz?",
                         options: ["Cry", "Sleep", "Smile", "Hide"],
                         correct: 2,
-                        hint: "Your mouth goes up!",
+                        hint: "¡Tu boca se levanta!",
                         image: null
                     }
                 ]
@@ -242,112 +256,112 @@ class EnglishAdventureGame {
             older: {
                 1: [
                     {
-                        question: "Complete the sentence: 'I ___ to school every day.'",
+                        question: "Completa la oración: 'I ___ to school every day.'",
                         options: ["go", "goes", "going", "went"],
                         correct: 0,
-                        hint: "Use the present simple tense!",
+                        hint: "¡Usa el tiempo presente simple!",
                         image: null
                     },
                     {
-                        question: "What is the opposite of 'big'?",
+                        question: "¿Cuál es el opuesto de 'big'?",
                         options: ["Large", "Huge", "Small", "Tall"],
                         correct: 2,
-                        hint: "Think about size!",
+                        hint: "¡Piensa en el tamaño!",
                         image: null
                     },
                     {
-                        question: "Which word is a noun?",
+                        question: "¿Cuál palabra es un sustantivo?",
                         options: ["Run", "Happy", "House", "Quickly"],
                         correct: 2,
-                        hint: "It's a person, place, or thing!",
+                        hint: "¡Es una persona, lugar o cosa!",
                         image: null
                     },
                     {
-                        question: "What do you call a group of fish?",
+                        question: "¿Cómo se llama un grupo de peces?",
                         options: ["Herd", "Flock", "School", "Pack"],
                         correct: 2,
-                        hint: "Fish swim together in a...",
+                        hint: "Los peces nadan juntos en una...",
                         image: null
                     },
                     {
-                        question: "Complete: 'The sun ___ in the east.'",
+                        question: "Completa: 'The sun ___ in the east.'",
                         options: ["rise", "rises", "rising", "rose"],
                         correct: 1,
-                        hint: "Use present simple for facts!",
+                        hint: "¡Usa presente simple para hechos!",
                         image: null
                     }
                 ],
                 2: [
                     {
-                        question: "What is the past tense of 'go'?",
+                        question: "¿Cuál es el tiempo pasado de 'go'?",
                         options: ["Goed", "Went", "Gone", "Going"],
                         correct: 1,
-                        hint: "It's an irregular verb!",
+                        hint: "¡Es un verbo irregular!",
                         image: null
                     },
                     {
-                        question: "Which sentence is correct?",
+                        question: "¿Cuál oración es correcta?",
                         options: ["I have 2 apple", "I have 2 apples", "I has 2 apples", "I having 2 apples"],
                         correct: 1,
-                        hint: "Countable nouns need 's' for plural!",
+                        hint: "¡Los sustantivos contables necesitan 's' en plural!",
                         image: null
                     },
                     {
-                        question: "What do you call someone who writes books?",
+                        question: "¿Cómo se llama alguien que escribe libros?",
                         options: ["Artist", "Author", "Actor", "Athlete"],
                         correct: 1,
-                        hint: "They create stories and novels!",
+                        hint: "¡Crean historias y novelas!",
                         image: null
                     },
                     {
-                        question: "Complete: 'If it rains, I ___ stay home.'",
+                        question: "Completa: 'If it rains, I ___ stay home.'",
                         options: ["will", "would", "am", "have"],
                         correct: 0,
-                        hint: "First conditional structure!",
+                        hint: "¡Estructura de primera condicional!",
                         image: null
                     },
                     {
-                        question: "What is the comparative form of 'good'?",
+                        question: "¿Cuál es la forma comparativa de 'good'?",
                         options: ["Gooder", "More good", "Better", "Best"],
                         correct: 2,
-                        hint: "It's an irregular adjective!",
+                        hint: "¡Es un adjetivo irregular!",
                         image: null
                     }
                 ],
                 3: [
                     {
-                        question: "What is the passive voice of 'The cat catches the mouse'?",
+                        question: "¿Cuál es la voz pasiva de 'The cat catches the mouse'?",
                         options: ["The mouse catches the cat", "The mouse is caught by the cat", "The cat is caught by the mouse", "The mouse catches by the cat"],
                         correct: 1,
-                        hint: "The object becomes the subject!",
+                        hint: "¡El objeto se convierte en sujeto!",
                         image: null
                     },
                     {
-                        question: "Which word is an adverb?",
+                        question: "¿Cuál palabra es un adverbio?",
                         options: ["Beautiful", "Beauty", "Beautifully", "Beautify"],
                         correct: 2,
-                        hint: "It describes how something is done!",
+                        hint: "¡Describe cómo se hace algo!",
                         image: null
                     },
                     {
-                        question: "What is a synonym for 'happy'?",
+                        question: "¿Cuál es un sinónimo de 'happy'?",
                         options: ["Sad", "Joyful", "Angry", "Tired"],
                         correct: 1,
-                        hint: "It means the same thing!",
+                        hint: "¡Significa lo mismo!",
                         image: null
                     },
                     {
-                        question: "Complete: 'She has been studying ___ 2 hours.'",
+                        question: "Completa: 'She has been studying ___ 2 hours.'",
                         options: ["since", "for", "from", "at"],
                         correct: 1,
-                        hint: "Use 'for' with duration!",
+                        hint: "¡Usa 'for' con duración!",
                         image: null
                     },
                     {
-                        question: "What is the superlative form of 'far'?",
+                        question: "¿Cuál es la forma superlativa de 'far'?",
                         options: ["Farrer", "More far", "Farthest", "Most far"],
                         correct: 2,
-                        hint: "It's an irregular adjective!",
+                        hint: "¡Es un adjetivo irregular!",
                         image: null
                     }
                 ]
@@ -465,23 +479,33 @@ class EnglishAdventureGame {
     }
 
     showCorrectFeedback() {
-        // Add celebration animation
+        // Add celebration animation with happy face
         const questionContainer = document.getElementById('question-container');
         const celebration = document.createElement('div');
-        celebration.innerHTML = '<i class="fas fa-star" style="color: #ffd700; font-size: 2rem; animation: bounce 0.5s;"></i>';
+        celebration.innerHTML = `
+            <div style="text-align: center; margin-top: 20px;">
+                <i class="fas fa-star" style="color: #ffd700; font-size: 2rem; animation: bounce 0.5s; margin-right: 10px;"></i>
+                <span style="font-size: 3rem; animation: happyBounce 1s;">😊</span>
+                <p style="color: #4ecdc4; font-weight: 600; margin-top: 10px; font-size: 1.2rem;">¡Correcto! ¡Muy bien!</p>
+            </div>
+        `;
         celebration.style.textAlign = 'center';
-        celebration.style.marginTop = '20px';
         questionContainer.appendChild(celebration);
         
         setTimeout(() => {
             celebration.remove();
-        }, 1000);
+        }, 2000);
     }
 
     showIncorrectFeedback() {
         const questionContainer = document.getElementById('question-container');
         const feedback = document.createElement('div');
-        feedback.innerHTML = '<p style="color: #ff6b6b; font-weight: 600; margin-top: 20px;">¡Inténtalo la próxima vez!</p>';
+        feedback.innerHTML = `
+            <div style="text-align: center; margin-top: 20px;">
+                <span style="font-size: 3rem; animation: sadShake 1s;">😔</span>
+                <p style="color: #ff6b6b; font-weight: 600; margin-top: 10px; font-size: 1.2rem;">¡Inténtalo la próxima vez!</p>
+            </div>
+        `;
         feedback.style.textAlign = 'center';
         questionContainer.appendChild(feedback);
         
@@ -577,6 +601,7 @@ class EnglishAdventureGame {
         const achievements = [
             { id: 'first_level', title: 'Primeros Pasos', description: 'Completa tu primer nivel', icon: 'fas fa-star', unlocked: this.completedLevels.length >= 1 },
             { id: 'score_50', title: 'Maestro de Puntos', description: 'Alcanza 50 puntos', icon: 'fas fa-trophy', unlocked: this.score >= 50 },
+            { id: 'score_200', title: 'Experto en Puntos', description: 'Alcanza 200 puntos', icon: 'fas fa-trophy', unlocked: this.score >= 200 },
             { id: 'stars_10', title: 'Coleccionista de Estrellas', description: 'Gana 10 estrellas', icon: 'fas fa-star', unlocked: this.stars >= 10 },
             { id: 'all_levels', title: 'Campeón de Inglés', description: 'Completa todos los niveles', icon: 'fas fa-crown', unlocked: this.completedLevels.length >= 3 }
         ];
@@ -607,6 +632,85 @@ class EnglishAdventureGame {
         localStorage.setItem('englishAdventureProgress', JSON.stringify(progress));
     }
 
+    showWelcomeMessage() {
+        // Crear mensaje de bienvenida con puntos iniciales
+        const welcomeMessage = document.createElement('div');
+        welcomeMessage.className = 'welcome-message';
+        welcomeMessage.innerHTML = `
+            <div class="welcome-message-content">
+                <i class="fas fa-gift" style="color: #ffd700; font-size: 3rem; margin-bottom: 15px;"></i>
+                <h3>¡Bienvenido, ${this.playerName}!</h3>
+                <p>🎁 <strong>¡Regalo de bienvenida!</strong></p>
+                <p>Has recibido <strong>100 puntos iniciales</strong> para comenzar tu aventura.</p>
+                <p>¡Diviértete aprendiendo inglés!</p>
+                <button class="welcome-close-btn">¡Entendido!</button>
+            </div>
+        `;
+        
+        // Agregar estilos al mensaje
+        welcomeMessage.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s ease;
+        `;
+        
+        const content = welcomeMessage.querySelector('.welcome-message-content');
+        content.style.cssText = `
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease;
+        `;
+        
+        const closeBtn = welcomeMessage.querySelector('.welcome-close-btn');
+        closeBtn.style.cssText = `
+            background: linear-gradient(135deg, #4ecdc4, #44a08d);
+            border: none;
+            border-radius: 15px;
+            padding: 12px 30px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        `;
+        
+        closeBtn.addEventListener('click', () => {
+            welcomeMessage.remove();
+        });
+        
+        // Cerrar con Escape
+        const handleEscape = (e) => {
+            if (e.key === 'Escape') {
+                welcomeMessage.remove();
+                document.removeEventListener('keydown', handleEscape);
+            }
+        };
+        document.addEventListener('keydown', handleEscape);
+        
+        document.body.appendChild(welcomeMessage);
+        
+        // Auto-cerrar después de 5 segundos
+        setTimeout(() => {
+            if (welcomeMessage.parentNode) {
+                welcomeMessage.remove();
+            }
+        }, 5000);
+    }
+
     loadProgress() {
         const saved = localStorage.getItem('englishAdventureProgress');
         if (saved) {
@@ -614,10 +718,38 @@ class EnglishAdventureGame {
             this.playerName = progress.playerName || '';
             this.ageGroup = progress.ageGroup || '';
             this.currentLevel = progress.currentLevel || 1;
-            this.score = progress.score || 0;
+            this.score = progress.score || 100; // Puntos iniciales si es la primera vez
             this.stars = progress.stars || 0;
             this.completedLevels = progress.completedLevels || [];
         }
+    }
+
+    initializeDarkMode() {
+        // Cargar preferencia de modo oscuro
+        const savedDarkMode = localStorage.getItem('englishAdventureDarkMode');
+        if (savedDarkMode === 'true') {
+            this.darkMode = true;
+            document.body.classList.add('dark-mode');
+        }
+    }
+
+    toggleDarkMode() {
+        this.darkMode = !this.darkMode;
+        
+        if (this.darkMode) {
+            document.body.classList.add('dark-mode');
+            localStorage.setItem('englishAdventureDarkMode', 'true');
+        } else {
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('englishAdventureDarkMode', 'false');
+        }
+
+        // Animación de la patita
+        const pawIcon = document.querySelector('.dark-mode-btn i');
+        pawIcon.style.transform = 'rotate(360deg)';
+        setTimeout(() => {
+            pawIcon.style.transform = '';
+        }, 300);
     }
 }
 

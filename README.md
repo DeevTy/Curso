@@ -17,14 +17,16 @@ Un sitio web interactivo para aprender inglés diseñado para niños de 3-18 añ
 ### Elementos Interactivos
 - **Preguntas de Opción Múltiple**: Formatos de preguntas atractivos
 - **Sistema de Pistas**: Obtén ayuda cuando estés atascado
-- **Retroalimentación Visual**: Respuesta inmediata para respuestas correctas/incorrectas
-- **Animaciones**: Animaciones divertidas y celebraciones
+- **Retroalimentación Visual**: Caritas felices 😊 para respuestas correctas y caras de error 😔 para incorrectas
+- **Animaciones**: Animaciones divertidas y celebraciones con estrellas y emojis
 
 ### Interfaz de Usuario
-- **Diseño Responsivo**: Funciona en escritorio, tablet y dispositivos móviles
+- **Diseño Responsivo**: Optimizado para PC, tablet y dispositivos móviles
 - **UI Moderna**: Interfaz hermosa y colorida diseñada para niños
+- **Modo Oscuro**: Botón con patita de perro (izquierda) para cambiar entre tema claro y oscuro
 - **Navegación Fácil**: Controles simples e intuitivos
 - **Accesibilidad**: Botones grandes y texto claro
+- **Orientación**: Adaptado para vertical y horizontal en móviles
 
 ## 🎯 Cómo Usar
 
@@ -47,6 +49,7 @@ Un sitio web interactivo para aprender inglés diseñado para niños de 3-18 añ
 - **Progreso**: Ve tus logros y estadísticas
 
 ### Sistema de Puntuación
+- **Puntos Iniciales**: ¡100 puntos de regalo al comenzar!
 - **Respuesta Correcta**: +10 puntos, +1 estrella
 - **Respuesta Incorrecta**: Sin puntos, pero puedes intentar de nuevo
 - **Completar Nivel**: Desbloquea logros y progreso
@@ -101,14 +104,19 @@ ingles/
 ## 🎓 Contenido Educativo
 
 ### 3-10 años (Inglés Básico)
-- **Nivel 1**: Colores, animales, conteo
-- **Nivel 2**: Objetos cotidianos, palabras simples
-- **Nivel 3**: Familia, actividades, frases básicas
+- **Nivel 1**: Colores, animales, conteo (preguntas en español)
+- **Nivel 2**: Objetos cotidianos, palabras simples (preguntas en español)
+- **Nivel 3**: Familia, actividades, frases básicas (preguntas en español)
 
 ### 10-18 años (Inglés Avanzado)
-- **Nivel 1**: Gramática básica, tiempo presente
-- **Nivel 2**: Gramática intermedia, tiempo pasado
-- **Nivel 3**: Gramática avanzada, estructuras complejas
+- **Nivel 1**: Gramática básica, tiempo presente (preguntas en español)
+- **Nivel 2**: Gramática intermedia, tiempo pasado (preguntas en español)
+- **Nivel 3**: Gramática avanzada, estructuras complejas (preguntas en español)
+
+### Metodología
+- **Preguntas en español**: Para entender claramente qué se pregunta
+- **Respuestas en inglés**: Para aprender el vocabulario y gramática
+- **Pistas en español**: Para ayudar cuando estés atascado
 
 ## 🏆 Logros
 
@@ -130,13 +138,42 @@ Edita `styles.css` para cambiar colores, fuentes o diseño.
 ### Agregar Nuevos Niveles
 Extiende el objeto de preguntas en `game.js` para agregar más niveles.
 
-## 📱 Experiencia Móvil
+## 📱 Experiencia Multi-Dispositivo
 
-El sitio web es completamente responsivo y optimizado para:
-- Interacciones táctiles
-- Tamaños de pantalla pequeños
-- Orientaciones vertical y horizontal
-- Diferentes capacidades de dispositivos
+El sitio web está completamente optimizado para todos los dispositivos:
+
+### 🖥️ **PC (Desktop)**
+- **Resolución**: 1200px+
+- **Layout**: Completo con todas las características
+- **Navegación**: Mouse y teclado optimizada
+
+### 📱 **Tablet (768px - 1024px)**
+- **Layout**: Adaptado para pantallas medianas
+- **Botones**: Tamaño intermedio para toque
+- **Grid**: 2 columnas para respuestas
+- **Patita**: 55px en esquina izquierda
+
+### 📱 **Móvil Grande (481px - 768px)**
+- **Layout**: Una columna para respuestas
+- **Botones**: Optimizados para dedos
+- **Navegación**: Apilada verticalmente
+- **Patita**: 50px en esquina izquierda
+
+### 📱 **Móvil Pequeño (320px - 480px)**
+- **Layout**: Compacto y eficiente
+- **Texto**: Tamaños reducidos pero legibles
+- **Botones**: Mínimo 45px para toque
+- **Patita**: 45px en esquina izquierda
+
+### 📱 **Móvil Extra Pequeño (< 320px)**
+- **Layout**: Ultra compacto
+- **Elementos**: Tamaños mínimos funcionales
+- **Patita**: 40px en esquina izquierda
+
+### 🔄 **Orientación Horizontal (Móvil)**
+- **Layout**: Adaptado para pantalla ancha
+- **Botones**: En fila horizontal
+- **Navegación**: Optimizada para landscape
 
 ## 🎯 Objetivos de Aprendizaje
 
