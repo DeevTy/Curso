@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aventura en Inglés - Aprende y Juega</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="screen active">
+            <div class="welcome-content">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h1>Aventura en Inglés</h1>
+                    <p>¡Aprende Inglés Divirtiéndote!</p>
+                </div>
+                
+                <div class="age-selection">
+                    <h2>Elige tu grupo de edad:</h2>
+                    <div class="age-buttons">
+                        <button class="age-btn" data-age="young">
+                            <i class="fas fa-baby"></i>
+                            <span>3-10 años</span>
+                            <small>Inglés Básico</small>
+                        </button>
+                        <button class="age-btn" data-age="older">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>10-18 años</span>
+                            <small>Inglés Avanzado</small>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="player-info" style="display: none;">
+                    <h3>Escribe tu nombre:</h3>
+                    <input type="text" id="player-name" placeholder="Tu nombre" maxlength="20">
+                    <button id="start-game" class="start-btn">
+                        <i class="fas fa-play"></i>
+                        ¡Comenzar Aventura!
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Game Screen -->
+        <div id="game-screen" class="screen">
+            <header class="game-header">
+                <div class="player-stats">
+                    <span class="player-name"></span>
+                    <div class="level-info">
+                        <span class="current-level">Level 1</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="score-info">
+                    <span class="score">Puntos: 0</span>
+                    <span class="stars">⭐ 0</span>
+                </div>
+            </header>
+
+            <main class="game-content">
+                <div class="level-container">
+                    <div class="level-title">
+                        <h2 id="level-title">¡Bienvenido al Nivel 1!</h2>
+                        <p id="level-description">¡Empecemos a aprender inglés!</p>
+                    </div>
+
+                    <div class="game-area">
+                        <div id="question-container" class="question-container">
+                            <!-- Questions will be loaded here -->
+                        </div>
+
+                        <div id="answer-container" class="answer-container">
+                            <!-- Answer options will be loaded here -->
+                        </div>
+                    </div>
+
+                    <div class="game-controls">
+                        <button id="hint-btn" class="control-btn">
+                            <i class="fas fa-lightbulb"></i>
+                            Pista
+                        </button>
+                        <button id="next-btn" class="control-btn" style="display: none;">
+                            <i class="fas fa-arrow-right"></i>
+                            Siguiente
+                        </button>
+                    </div>
+                </div>
+            </main>
+
+            <nav class="game-nav">
+                <button id="home-btn" class="nav-btn">
+                    <i class="fas fa-home"></i>
+                    Inicio
+                </button>
+                <button id="levels-btn" class="nav-btn">
+                    <i class="fas fa-list"></i>
+                    Niveles
+                </button>
+                <button id="progress-btn" class="nav-btn">
+                    <i class="fas fa-chart-line"></i>
+                    Progreso
+                </button>
+            </nav>
+        </div>
+
+        <!-- Levels Selection Screen -->
+        <div id="levels-screen" class="screen">
+            <div class="levels-header">
+                <h2>Elige tu Nivel</h2>
+                <button id="back-to-game" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Volver al Juego
+                </button>
+            </div>
+            <div id="levels-grid" class="levels-grid">
+                <!-- Levels will be generated here -->
+            </div>
+        </div>
+
+        <!-- Progress Screen -->
+        <div id="progress-screen" class="screen">
+            <div class="progress-header">
+                <h2>Tu Progreso</h2>
+                <button id="back-to-game-progress" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                    Volver al Juego
+                </button>
+            </div>
+            <div class="progress-content">
+                <div class="progress-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-trophy"></i>
+                        <h3>Puntos Totales</h3>
+                        <span id="total-score">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-star"></i>
+                        <h3>Estrellas Ganadas</h3>
+                        <span id="total-stars">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-flag-checkered"></i>
+                        <h3>Niveles Completados</h3>
+                        <span id="levels-completed">0</span>
+                    </div>
+                </div>
+                <div class="achievements">
+                    <h3>Logros</h3>
+                    <div id="achievements-list" class="achievements-list">
+                        <!-- Achievements will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Level Complete Screen -->
+        <div id="level-complete" class="modal">
+            <div class="modal-content">
+                <div class="completion-animation">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h2>¡Nivel Completado!</h2>
+                <div class="completion-stats">
+                    <p>Puntos: <span id="level-score">0</span></p>
+                    <p>Estrellas: <span id="level-stars">0</span></p>
+                </div>
+                <div class="completion-buttons">
+                    <button id="next-level-btn" class="btn-primary">
+                        <i class="fas fa-arrow-right"></i>
+                        Siguiente Nivel
+                    </button>
+                    <button id="replay-level-btn" class="btn-secondary">
+                        <i class="fas fa-redo"></i>
+                        Repetir
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over" class="modal">
+            <div class="modal-content">
+                <div class="game-over-animation">
+                    <i class="fas fa-heart-broken"></i>
+                </div>
+                <h2>¡Inténtalo de nuevo!</h2>
+                <p>¡No te rindas! ¡Tú puedes hacerlo!</p>
+                <div class="game-over-buttons">
+                    <button id="retry-btn" class="btn-primary">
+                        <i class="fas fa-redo"></i>
+                        Intentar de nuevo
+                    </button>
+                    <button id="home-from-gameover" class="btn-secondary">
+                        <i class="fas fa-home"></i>
+                        Ir al Inicio
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+</body>
+</html> 
