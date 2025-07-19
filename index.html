@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aventura en Inglés - Aprende y Juega</title>
+    <title> Aprende y Juega</title>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -14,28 +14,32 @@
         <div id="welcome-screen" class="screen active">
             <div class="welcome-content">
                 <div class="logo">
-                    <i class="fas fa-graduation-cap"></i>
+                    <button id="dark-mode-toggle" class="logo-paw-btn" title="Cambiar modo claro/oscuro" style="background:none;border:none;cursor:pointer;outline:none;padding:0;">
+                      <i class="fas fa-paw"></i>
+                    </button>
                     <h1>Aventura en Inglés</h1>
                     <p>¡Aprende Inglés Divirtiéndote!</p>
                 </div>
                 
-                <!-- Botón de modo oscuro -->
-                <button id="dark-mode-toggle" class="dark-mode-btn" title="Cambiar modo oscuro/claro">
-                    <i class="fas fa-paw"></i>
-                </button>
+
                 
                 <div class="age-selection">
                     <h2>Elige tu grupo de edad:</h2>
                     <div class="age-buttons">
-                        <button class="age-btn" data-age="young">
+                        <button class="age-btn" data-age="3-6">
                             <i class="fas fa-baby"></i>
-                            <span>3-10 años</span>
-                            <small>Inglés Básico</small>
+                            <span>3-6 años</span>
+                            <small>Preescolar</small>
                         </button>
-                        <button class="age-btn" data-age="older">
+                        <button class="age-btn" data-age="6-12">
+                            <i class="fas fa-child"></i>
+                            <span>6-12 años</span>
+                            <small>Primaria</small>
+                        </button>
+                        <button class="age-btn" data-age="12-18">
                             <i class="fas fa-user-graduate"></i>
-                            <span>10-18 años</span>
-                            <small>Inglés Avanzado</small>
+                            <span>12-18 años</span>
+                            <small>Secundaria</small>
                         </button>
                     </div>
                 </div>
@@ -67,10 +71,7 @@
                     <span class="score">Puntos: 0</span>
                     <span class="stars">⭐ 0</span>
                 </div>
-                <!-- Botón de modo oscuro en el juego -->
-                <button id="dark-mode-toggle-game" class="dark-mode-btn" title="Cambiar modo oscuro/claro">
-                    <i class="fas fa-paw"></i>
-                </button>
+
             </header>
 
             <main class="game-content">

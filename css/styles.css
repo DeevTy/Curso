@@ -18,46 +18,9 @@ body.dark-mode {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
-/* Botón de Modo Oscuro */
-.dark-mode-btn {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    color: #fff;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.dark-mode-btn:hover {
-    background: rgba(255, 255, 255, 0.3);
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
 
-.dark-mode-btn:active {
-    transform: scale(0.95);
-}
 
-/* Animación de la patita */
-.dark-mode-btn i {
-    transition: transform 0.3s ease;
-}
-
-.dark-mode-btn:hover i {
-    transform: rotate(15deg);
-}
 
 /* Modo oscuro para elementos específicos */
 body.dark-mode .welcome-content,
@@ -191,6 +154,30 @@ body.dark-mode .completion-stats {
     font-size: 1.2rem;
     color: #e8f4fd;
     font-weight: 600;
+}
+
+.logo-paw-btn {
+  display: block;
+  margin: 0 auto 20px auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+  transition: transform 0.2s;
+}
+.logo-paw-btn:active, .logo-paw-btn:focus {
+  outline: none;
+}
+.logo-paw-btn:hover i {
+  color: #ffd700;
+  transform: scale(1.15) rotate(-10deg);
+}
+.logo-paw-btn i {
+  font-size: 4rem;
+  color: #ffd700;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  transition: color 0.2s, transform 0.2s;
 }
 
 @keyframes bounce {
@@ -906,13 +893,7 @@ body.dark-mode .completion-stats {
         gap: 25px;
     }
     
-    .dark-mode-btn {
-        top: 25px;
-        left: 25px;
-        width: 55px;
-        height: 55px;
-        font-size: 1.3rem;
-    }
+
     
     /* Feedback emojis responsive for tablets */
     .question-container span[style*="font-size: 3rem"] {
@@ -972,13 +953,7 @@ body.dark-mode .completion-stats {
         max-width: 350px;
     }
     
-    .dark-mode-btn {
-        top: 20px;
-        left: 20px;
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-    }
+
 }
 
 /* Mobile Small (320px - 480px) */
@@ -1083,13 +1058,7 @@ body.dark-mode .completion-stats {
         font-size: 1rem;
     }
     
-    .dark-mode-btn {
-        top: 15px;
-        left: 15px;
-        width: 45px;
-        height: 45px;
-        font-size: 1rem;
-    }
+
     
     /* Feedback emojis responsive */
     .question-container span[style*="font-size: 3rem"] {
@@ -1128,13 +1097,7 @@ body.dark-mode .completion-stats {
         font-size: 1rem;
     }
     
-    .dark-mode-btn {
-        top: 10px;
-        left: 10px;
-        width: 40px;
-        height: 40px;
-        font-size: 0.9rem;
-    }
+
 }
 
 /* Landscape orientation for mobile */
@@ -1163,10 +1126,5 @@ body.dark-mode .completion-stats {
         align-items: center;
     }
     
-    .dark-mode-btn {
-        top: 15px;
-        left: 15px;
-        width: 45px;
-        height: 45px;
-    }
+
 } 

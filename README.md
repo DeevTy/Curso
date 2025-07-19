@@ -23,7 +23,7 @@ Un sitio web interactivo para aprender inglés diseñado para niños de 3-18 añ
 ### Interfaz de Usuario
 - **Diseño Responsivo**: Optimizado para PC, tablet y dispositivos móviles
 - **UI Moderna**: Interfaz hermosa y colorida diseñada para niños
-- **Modo Oscuro**: Botón con patita de perro (izquierda) para cambiar entre tema claro y oscuro
+
 - **Navegación Fácil**: Controles simples e intuitivos
 - **Accesibilidad**: Botones grandes y texto claro
 - **Orientación**: Adaptado para vertical y horizontal en móviles
@@ -151,29 +151,30 @@ El sitio web está completamente optimizado para todos los dispositivos:
 - **Layout**: Adaptado para pantallas medianas
 - **Botones**: Tamaño intermedio para toque
 - **Grid**: 2 columnas para respuestas
-- **Patita**: 55px en esquina izquierda
+- **Patita**: 55px en esquina superior derecha
 
 ### 📱 **Móvil Grande (481px - 768px)**
 - **Layout**: Una columna para respuestas
 - **Botones**: Optimizados para dedos
 - **Navegación**: Apilada verticalmente
-- **Patita**: 50px en esquina izquierda
+- **Patita**: 50px en esquina superior derecha
 
 ### 📱 **Móvil Pequeño (320px - 480px)**
 - **Layout**: Compacto y eficiente
 - **Texto**: Tamaños reducidos pero legibles
 - **Botones**: Mínimo 45px para toque
-- **Patita**: 45px en esquina izquierda
+- **Patita**: 45px en esquina superior derecha
 
 ### 📱 **Móvil Extra Pequeño (< 320px)**
 - **Layout**: Ultra compacto
 - **Elementos**: Tamaños mínimos funcionales
-- **Patita**: 40px en esquina izquierda
+- **Patita**: 40px en esquina superior derecha
 
 ### 🔄 **Orientación Horizontal (Móvil)**
 - **Layout**: Adaptado para pantalla ancha
 - **Botones**: En fila horizontal
 - **Navegación**: Optimizada para landscape
+- **Patita**: 45px en esquina superior derecha
 
 ## 🎯 Objetivos de Aprendizaje
 

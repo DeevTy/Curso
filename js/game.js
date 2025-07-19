@@ -15,11 +15,11 @@ class EnglishAdventureGame {
         
         this.initializeGame();
         this.bindEvents();
-        this.initializeDarkMode();
     }
 
     initializeGame() {
         this.loadProgress();
+        this.loadDarkMode();
         this.updateUI();
     }
 
@@ -31,6 +31,14 @@ class EnglishAdventureGame {
                 this.showPlayerInfo();
             });
         });
+
+        // Modo oscuro con la huella del logo
+        const pawBtn = document.getElementById('dark-mode-toggle');
+        if (pawBtn) {
+            pawBtn.addEventListener('click', () => {
+                this.toggleDarkMode();
+            });
+        }
 
         // Start game
         document.getElementById('start-game').addEventListener('click', () => {
@@ -68,14 +76,7 @@ class EnglishAdventureGame {
             }
         });
 
-        // Dark mode toggle buttons
-        document.getElementById('dark-mode-toggle').addEventListener('click', () => {
-            this.toggleDarkMode();
-        });
 
-        document.getElementById('dark-mode-toggle-game').addEventListener('click', () => {
-            this.toggleDarkMode();
-        });
     }
 
     showPlayerInfo() {
@@ -98,6 +99,8 @@ class EnglishAdventureGame {
         this.showScreen('welcome-screen');
         document.querySelector('.player-info').style.display = 'none';
         document.getElementById('player-name').value = '';
+        
+
     }
 
     showGame() {
@@ -140,235 +143,102 @@ class EnglishAdventureGame {
     // Question Data for Different Age Groups
     getQuestionsForLevel(level, ageGroup) {
         const questions = {
-            young: {
+            '3-6': {
                 1: [
                     {
-                        question: "¿De qué color es el cielo?",
-                        options: ["Blue", "Red", "Green", "Yellow"],
+                        question: "¿De qué color es el sol?",
+                        options: ["Yellow", "Blue", "Red", "Green"],
                         correct: 0,
-                        hint: "¡Mira hacia arriba durante el día!",
+                        hint: "¡Mira el cielo cuando hace sol!",
                         image: null
                     },
                     {
-                        question: "¿Qué animal hace 'meow'?",
-                        options: ["Dog", "Cat", "Bird", "Fish"],
+                        question: "¿Qué animal dice 'guau'?",
+                        options: ["Cat", "Dog", "Fish", "Bird"],
                         correct: 1,
-                        hint: "¡Es una mascota pequeña que le gusta dormir!",
-                        image: null
-                    },
-                    {
-                        question: "¿Cuántos dedos tienes en una mano?",
-                        options: ["3", "4", "5", "6"],
-                        correct: 2,
-                        hint: "¡Cuenta tus dedos!",
-                        image: null
-                    },
-                    {
-                        question: "¿Qué bebes cuando tienes sed?",
-                        options: ["Food", "Water", "Air", "Light"],
-                        correct: 1,
-                        hint: "¡Es transparente y sale del grifo!",
-                        image: null
-                    },
-                    {
-                        question: "¿Qué forma tiene un círculo?",
-                        options: ["Square", "Triangle", "Circle", "Rectangle"],
-                        correct: 2,
-                        hint: "¡Es redondo como una pelota!",
+                        hint: "Es el mejor amigo del hombre.",
                         image: null
                     }
                 ],
                 2: [
                     {
-                        question: "¿Qué te pones en los pies?",
-                        options: ["Hat", "Shoes", "Gloves", "Scarf"],
+                        question: "¿Qué fruta es roja y redonda?",
+                        options: ["Banana", "Apple", "Grape", "Orange"],
                         correct: 1,
-                        hint: "¡Te los pones antes de salir!",
-                        image: null
-                    },
-                    {
-                        question: "¿Qué fruta es amarilla y crece en árboles?",
-                        options: ["Apple", "Banana", "Orange", "Grape"],
-                        correct: 1,
-                        hint: "¡A los monos les encanta comer esta fruta!",
-                        image: null
-                    },
-                    {
-                        question: "¿Qué usas para escribir?",
-                        options: ["Fork", "Pencil", "Spoon", "Cup"],
-                        correct: 1,
-                        hint: "¡Lo sostienes en la mano para hacer marcas!",
-                        image: null
-                    },
-                    {
-                        question: "¿Qué dices cuando conoces a alguien?",
-                        options: ["Goodbye", "Hello", "Thank you", "Sorry"],
-                        correct: 1,
-                        hint: "¡Es un saludo amigable!",
-                        image: null
-                    },
-                    {
-                        question: "¿Qué haces cuando estás cansado?",
-                        options: ["Eat", "Sleep", "Run", "Jump"],
-                        correct: 1,
-                        hint: "¡Cierras los ojos y descansas!",
+                        hint: "Blanca por dentro, roja por fuera.",
                         image: null
                     }
                 ],
                 3: [
                     {
-                        question: "¿Cómo llamas a la madre de tu madre?",
-                        options: ["Sister", "Grandmother", "Aunt", "Cousin"],
-                        correct: 1,
-                        hint: "¡Es mayor que tu madre!",
-                        image: null
-                    },
-                    {
-                        question: "¿Qué haces con un libro?",
-                        options: ["Eat it", "Read it", "Throw it", "Hide it"],
-                        correct: 1,
-                        hint: "¡Miras las palabras y las imágenes!",
-                        image: null
-                    },
-                    {
-                        question: "¿Qué usas para cepillarte los dientes?",
-                        options: ["Spoon", "Toothbrush", "Fork", "Knife"],
-                        correct: 1,
-                        hint: "¡Tiene cerdas y pasta de dientes!",
-                        image: null
-                    },
-                    {
-                        question: "¿Qué dices cuando alguien te da algo?",
-                        options: ["Hello", "Goodbye", "Thank you", "Sorry"],
-                        correct: 2,
-                        hint: "¡Es una palabra educada!",
-                        image: null
-                    },
-                    {
-                        question: "¿Qué haces cuando estás feliz?",
-                        options: ["Cry", "Sleep", "Smile", "Hide"],
-                        correct: 2,
-                        hint: "¡Tu boca se levanta!",
+                        question: "¿Qué usas para dibujar?",
+                        options: ["Pencil", "Fork", "Spoon", "Cup"],
+                        correct: 0,
+                        hint: "¡Lo usas en la escuela!",
                         image: null
                     }
                 ]
             },
-            older: {
+            '6-12': {
                 1: [
                     {
-                        question: "Completa la oración: 'I ___ to school every day.'",
-                        options: ["go", "goes", "going", "went"],
+                        question: "¿Cómo se dice 'libro' en inglés?",
+                        options: ["Book", "Table", "Chair", "Pen"],
                         correct: 0,
-                        hint: "¡Usa el tiempo presente simple!",
-                        image: null
-                    },
-                    {
-                        question: "¿Cuál es el opuesto de 'big'?",
-                        options: ["Large", "Huge", "Small", "Tall"],
-                        correct: 2,
-                        hint: "¡Piensa en el tamaño!",
-                        image: null
-                    },
-                    {
-                        question: "¿Cuál palabra es un sustantivo?",
-                        options: ["Run", "Happy", "House", "Quickly"],
-                        correct: 2,
-                        hint: "¡Es una persona, lugar o cosa!",
-                        image: null
-                    },
-                    {
-                        question: "¿Cómo se llama un grupo de peces?",
-                        options: ["Herd", "Flock", "School", "Pack"],
-                        correct: 2,
-                        hint: "Los peces nadan juntos en una...",
-                        image: null
-                    },
-                    {
-                        question: "Completa: 'The sun ___ in the east.'",
-                        options: ["rise", "rises", "rising", "rose"],
-                        correct: 1,
-                        hint: "¡Usa presente simple para hechos!",
+                        hint: "Lo lees en la escuela.",
                         image: null
                     }
                 ],
                 2: [
                     {
-                        question: "¿Cuál es el tiempo pasado de 'go'?",
-                        options: ["Goed", "Went", "Gone", "Going"],
-                        correct: 1,
-                        hint: "¡Es un verbo irregular!",
-                        image: null
-                    },
-                    {
-                        question: "¿Cuál oración es correcta?",
-                        options: ["I have 2 apple", "I have 2 apples", "I has 2 apples", "I having 2 apples"],
-                        correct: 1,
-                        hint: "¡Los sustantivos contables necesitan 's' en plural!",
-                        image: null
-                    },
-                    {
-                        question: "¿Cómo se llama alguien que escribe libros?",
-                        options: ["Artist", "Author", "Actor", "Athlete"],
-                        correct: 1,
-                        hint: "¡Crean historias y novelas!",
-                        image: null
-                    },
-                    {
-                        question: "Completa: 'If it rains, I ___ stay home.'",
-                        options: ["will", "would", "am", "have"],
-                        correct: 0,
-                        hint: "¡Estructura de primera condicional!",
-                        image: null
-                    },
-                    {
-                        question: "¿Cuál es la forma comparativa de 'good'?",
-                        options: ["Gooder", "More good", "Better", "Best"],
+                        question: "¿Cuál es el plural de 'child'?",
+                        options: ["Childs", "Childes", "Children", "Childrens"],
                         correct: 2,
-                        hint: "¡Es un adjetivo irregular!",
+                        hint: "Es una palabra irregular.",
                         image: null
                     }
                 ],
                 3: [
                     {
-                        question: "¿Cuál es la voz pasiva de 'The cat catches the mouse'?",
-                        options: ["The mouse catches the cat", "The mouse is caught by the cat", "The cat is caught by the mouse", "The mouse catches by the cat"],
+                        question: "¿Cómo se dice 'comer' en inglés?",
+                        options: ["Eat", "Run", "Play", "Sleep"],
+                        correct: 0,
+                        hint: "Lo haces cuando tienes hambre.",
+                        image: null
+                    }
+                ]
+            },
+            '12-18': {
+                1: [
+                    {
+                        question: "Completa: 'She ___ to the gym every day.'",
+                        options: ["go", "goes", "going", "gone"],
                         correct: 1,
-                        hint: "¡El objeto se convierte en sujeto!",
+                        hint: "Presente simple, tercera persona.",
                         image: null
-                    },
+                    }
+                ],
+                2: [
                     {
-                        question: "¿Cuál palabra es un adverbio?",
-                        options: ["Beautiful", "Beauty", "Beautifully", "Beautify"],
-                        correct: 2,
-                        hint: "¡Describe cómo se hace algo!",
-                        image: null
-                    },
-                    {
-                        question: "¿Cuál es un sinónimo de 'happy'?",
-                        options: ["Sad", "Joyful", "Angry", "Tired"],
+                        question: "¿Cuál es el pasado de 'see'?",
+                        options: ["Seed", "Saw", "Seen", "Sees"],
                         correct: 1,
-                        hint: "¡Significa lo mismo!",
+                        hint: "Verbo irregular.",
                         image: null
-                    },
+                    }
+                ],
+                3: [
                     {
-                        question: "Completa: 'She has been studying ___ 2 hours.'",
-                        options: ["since", "for", "from", "at"],
-                        correct: 1,
-                        hint: "¡Usa 'for' con duración!",
-                        image: null
-                    },
-                    {
-                        question: "¿Cuál es la forma superlativa de 'far'?",
-                        options: ["Farrer", "More far", "Farthest", "Most far"],
-                        correct: 2,
-                        hint: "¡Es un adjetivo irregular!",
+                        question: "¿Cómo se dice 'lograr' en inglés?",
+                        options: ["Achieve", "Arrive", "Allow", "Answer"],
+                        correct: 0,
+                        hint: "Empieza con 'A'.",
                         image: null
                     }
                 ]
             }
         };
-
-        return questions[ageGroup][level] || [];
+        return questions[ageGroup] && questions[ageGroup][level] ? questions[ageGroup][level] : [];
     }
 
     loadLevel(level) {
@@ -384,33 +254,43 @@ class EnglishAdventureGame {
 
     updateLevelTitle() {
         const titles = {
-            young: {
-                1: "Colores Básicos y Animales",
-                2: "Objetos Cotidianos",
-                3: "Familia y Actividades"
+            '3-6': {
+                1: "Colores y Animales",
+                2: "Frutas y Objetos",
+                3: "Acciones Básicas"
             },
-            older: {
-                1: "Gramática Básica",
-                2: "Gramática Intermedia",
-                3: "Gramática Avanzada"
+            '6-12': {
+                1: "Vocabulario Escolar",
+                2: "Gramática Básica",
+                3: "Verbos y Acciones"
+            },
+            '12-18': {
+                1: "Gramática Intermedia",
+                2: "Tiempos Verbales",
+                3: "Vocabulario Avanzado"
             }
         };
-
         const descriptions = {
-            young: {
-                1: "¡Aprende sobre colores, animales y conteo básico!",
-                2: "¡Descubre objetos cotidianos y palabras simples!",
-                3: "¡Aprende sobre familia y actividades diarias!"
+            '3-6': {
+                1: "Aprende colores y animales con imágenes.",
+                2: "Identifica frutas y objetos cotidianos.",
+                3: "Acciones simples para los más pequeños."
             },
-            older: {
-                1: "¡Domina las reglas básicas de gramática inglesa!",
-                2: "¡Practica conceptos de gramática intermedia!",
-                3: "¡Desafíate con gramática avanzada!"
+            '6-12': {
+                1: "Palabras útiles para la escuela.",
+                2: "Reglas básicas de gramática.",
+                3: "Verbos comunes y su uso."
+            },
+            '12-18': {
+                1: "Gramática para secundaria.",
+                2: "Domina los tiempos verbales.",
+                3: "Palabras y expresiones avanzadas."
             }
         };
-
-        document.getElementById('level-title').textContent = titles[this.ageGroup][this.currentLevel] || `Nivel ${this.currentLevel}`;
-        document.getElementById('level-description').textContent = descriptions[this.ageGroup][this.currentLevel] || "¡Vamos a aprender inglés!";
+        const group = this.ageGroup;
+        const lvl = this.currentLevel;
+        document.getElementById('level-title').textContent = titles[group][lvl] || `Nivel ${lvl}`;
+        document.getElementById('level-description').textContent = descriptions[group][lvl] || '';
     }
 
     displayQuestion() {
@@ -724,33 +604,29 @@ class EnglishAdventureGame {
         }
     }
 
-    initializeDarkMode() {
-        // Cargar preferencia de modo oscuro
-        const savedDarkMode = localStorage.getItem('englishAdventureDarkMode');
-        if (savedDarkMode === 'true') {
-            this.darkMode = true;
+    loadDarkMode() {
+        const saved = localStorage.getItem('englishAdventureDarkMode');
+        if (saved === 'true') {
             document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
         }
     }
 
     toggleDarkMode() {
-        this.darkMode = !this.darkMode;
-        
-        if (this.darkMode) {
-            document.body.classList.add('dark-mode');
-            localStorage.setItem('englishAdventureDarkMode', 'true');
-        } else {
-            document.body.classList.remove('dark-mode');
-            localStorage.setItem('englishAdventureDarkMode', 'false');
+        const isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('englishAdventureDarkMode', isDark ? 'true' : 'false');
+        // Animación de la huella
+        const pawIcon = document.querySelector('#dark-mode-toggle i');
+        if (pawIcon) {
+            pawIcon.style.transform = 'rotate(360deg) scale(1.2)';
+            setTimeout(() => {
+                pawIcon.style.transform = '';
+            }, 300);
         }
-
-        // Animación de la patita
-        const pawIcon = document.querySelector('.dark-mode-btn i');
-        pawIcon.style.transform = 'rotate(360deg)';
-        setTimeout(() => {
-            pawIcon.style.transform = '';
-        }, 300);
     }
+
+
 }
 
 // Initialize the game when the page loads
