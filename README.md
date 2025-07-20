@@ -200,6 +200,8 @@ Para preguntas o sugerencias, consulta los comentarios del código o crea un iss
 
 ---
 
+<p align="center"><strong>© Deevty.com - Todos los derechos reservados</strong></p>
+
 **¡Feliz Aprendizaje! 🎉**
 
 *Aventura en Inglés - ¡Haciendo el aprendizaje divertido y atractivo para todos!* 

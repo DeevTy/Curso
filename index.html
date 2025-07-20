@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('service-worker.js');
+        });
+      }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -215,6 +223,11 @@
             </div>
         </div>
     </div>
+
+    <footer style="text-align:center; margin-top:40px; color:#888; font-size:1rem;">
+      © Deevty.com - Todos los derechos reservados
+    </footer>
+  </div> <!-- cierre de .container -->
 
     <script src="js/game.js"></script>
 </body>
