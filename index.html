@@ -100,10 +100,12 @@
                     </div>
 
                     <div class="game-controls">
-                        <button id="audio-btn" class="control-btn" style="display: inline-block !important; background: red !important; color: white !important; font-size: 16px !important; padding: 15px 25px !important; margin: 10px !important; border: 3px solid yellow !important;">
-                            <i class="fas fa-volume-up"></i>
-                            🎵 ESCUCHAR AUDIO 🎵
-                        </button>
+                        <!-- Botón de audio circular tipo play/bocina -->
+                        <div id="audio-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999; background: transparent; border: none; box-shadow: none;">
+                            <button id="audio-btn" aria-label="Escuchar pregunta" style="background: #ff6b6b; color: white; border: none; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; box-shadow: 0 5px 15px rgba(0,0,0,0.3); cursor: pointer; transition: background 0.3s, box-shadow 0.3s; outline: none;">
+                                <i class="fas fa-volume-up"></i>
+                            </button>
+                        </div>
                         <button id="hint-btn" class="control-btn">
                             <i class="fas fa-lightbulb"></i>
                             Pista

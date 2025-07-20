@@ -20,7 +20,39 @@ class EnglishAdventureGame {
     initializeGame() {
         this.loadProgress();
         this.loadDarkMode();
-        this.updateUI();
+        this.bindEvents();
+        this.ensureAudioButtonVisible();
+        this.showWelcome();
+    }
+    
+    ensureAudioButtonVisible() {
+        // Asegurar que el botón de audio esté siempre visible
+        const audioContainer = document.getElementById('audio-container');
+        const audioBtn = document.getElementById('audio-btn');
+        
+        if (audioContainer) {
+            audioContainer.style.display = 'block';
+            audioContainer.style.visibility = 'visible';
+            audioContainer.style.opacity = '1';
+            audioContainer.style.position = 'fixed';
+            audioContainer.style.top = '20px';
+            audioContainer.style.right = '20px';
+            audioContainer.style.zIndex = '9999';
+        }
+        
+        if (audioBtn) {
+            audioBtn.style.display = 'block';
+            audioBtn.style.visibility = 'visible';
+            audioBtn.style.opacity = '1';
+            audioBtn.style.background = 'red';
+            audioBtn.style.color = 'white';
+            audioBtn.style.border = 'none';
+            audioBtn.style.padding = '15px 25px';
+            audioBtn.style.borderRadius = '8px';
+            audioBtn.style.fontSize = '16px';
+            audioBtn.style.fontWeight = 'bold';
+            audioBtn.style.cursor = 'pointer';
+        }
     }
 
     bindEvents() {
@@ -558,33 +590,20 @@ class EnglishAdventureGame {
             answerContainer.appendChild(button);
         });
 
-        // Show audio button for testing - always visible
+        // Asegurar que el botón de audio esté visible
+        const audioContainer = document.getElementById('audio-container');
         const audioBtn = document.getElementById('audio-btn');
-        console.log('DisplayQuestion - Audio button element:', audioBtn);
-        console.log('DisplayQuestion - Audio button display before:', audioBtn ? audioBtn.style.display : 'null');
+        
+        if (audioContainer) {
+            audioContainer.style.display = 'block';
+            audioContainer.style.visibility = 'visible';
+            audioContainer.style.opacity = '1';
+        }
         
         if (audioBtn) {
-            audioBtn.style.display = 'inline-block';
+            audioBtn.style.display = 'block';
             audioBtn.style.visibility = 'visible';
             audioBtn.style.opacity = '1';
-            console.log('DisplayQuestion - Audio button display after:', audioBtn.style.display);
-            console.log('DisplayQuestion - Audio button visibility:', audioBtn.style.visibility);
-            console.log('DisplayQuestion - Audio button opacity:', audioBtn.style.opacity);
-        } else {
-            console.error('DisplayQuestion - Audio button not found!');
-            
-            // Create audio button dynamically if not found
-            const gameControls = document.querySelector('.game-controls');
-            if (gameControls) {
-                const newAudioBtn = document.createElement('button');
-                newAudioBtn.id = 'audio-btn-dynamic';
-                newAudioBtn.className = 'control-btn';
-                newAudioBtn.innerHTML = '<i class="fas fa-volume-up"></i> 🎵 ESCUCHAR AUDIO 🎵';
-                newAudioBtn.style.cssText = 'display: inline-block !important; background: red !important; color: white !important; font-size: 16px !important; padding: 15px 25px !important; margin: 10px !important; border: 3px solid yellow !important;';
-                newAudioBtn.addEventListener('click', () => this.playQuestionAudio());
-                gameControls.insertBefore(newAudioBtn, gameControls.firstChild);
-                console.log('Created dynamic audio button');
-            }
         }
 
         // Reset controls
@@ -677,36 +696,33 @@ class EnglishAdventureGame {
         const question = this.questions[this.currentQuestionIndex];
         const audioBtn = document.getElementById('audio-btn');
         
+        if (!audioBtn) {
+            alert('Error: No se encontró el botón de audio');
+            return;
+        }
+        
         // Check if speech synthesis is supported
         if ('speechSynthesis' in window) {
-            // Stop any current speech
             window.speechSynthesis.cancel();
-            
-            // Create speech utterance
             const utterance = new SpeechSynthesisUtterance(question.question);
-            utterance.lang = 'es-ES'; // Spanish
-            utterance.rate = 0.8; // Slightly slower for children
-            utterance.pitch = 1.1; // Slightly higher pitch for children
-            
-            // Add visual feedback
-            audioBtn.classList.add('playing');
-            audioBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Detener';
-            
-            // Handle speech end
+            utterance.lang = 'es-ES';
+            utterance.rate = 0.8;
+            utterance.pitch = 1.1;
+            // Cambia a icono de pausa y color verde
+            audioBtn.style.background = '#00b894';
+            audioBtn.querySelector('i').className = 'fas fa-pause';
+            // Al terminar vuelve a bocina y rojo
             utterance.onend = () => {
-                audioBtn.classList.remove('playing');
-                audioBtn.innerHTML = '<i class="fas fa-volume-up"></i> Escuchar';
+                audioBtn.style.background = '#ff6b6b';
+                audioBtn.querySelector('i').className = 'fas fa-volume-up';
             };
-            
-            utterance.onerror = () => {
-                audioBtn.classList.remove('playing');
-                audioBtn.innerHTML = '<i class="fas fa-volume-up"></i> Escuchar';
+            utterance.onerror = (event) => {
+                audioBtn.style.background = '#ff6b6b';
+                audioBtn.querySelector('i').className = 'fas fa-volume-up';
+                alert('Error al reproducir audio: ' + event.error);
             };
-            
-            // Start speaking
             window.speechSynthesis.speak(utterance);
         } else {
-            // Fallback for browsers without speech synthesis
             alert('Tu navegador no soporta la función de audio. La pregunta es: ' + question.question);
         }
     }
