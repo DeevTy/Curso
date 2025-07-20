@@ -60,7 +60,16 @@ class EnglishAdventureGame {
         document.getElementById('back-to-game-progress').addEventListener('click', () => this.showGame());
 
         // Game controls
-        document.getElementById('audio-btn').addEventListener('click', () => this.playQuestionAudio());
+        const audioBtn = document.getElementById('audio-btn');
+        console.log('Audio button found in bindEvents:', audioBtn);
+        if (audioBtn) {
+            audioBtn.addEventListener('click', () => {
+                console.log('Audio button clicked!');
+                this.playQuestionAudio();
+            });
+        } else {
+            console.error('Audio button not found in bindEvents!');
+        }
         document.getElementById('hint-btn').addEventListener('click', () => this.showHint());
         document.getElementById('next-btn').addEventListener('click', () => this.nextQuestion());
 
