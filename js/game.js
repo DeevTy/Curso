@@ -92,10 +92,14 @@ class EnglishAdventureGame {
         
         // Show audio button for 3-6 age group
         const audioBtn = document.getElementById('audio-btn');
+        console.log('Age group:', this.ageGroup);
+        console.log('Audio button found:', audioBtn);
         if (this.ageGroup === '3-6') {
             audioBtn.style.display = 'inline-block';
+            console.log('Audio button should be visible');
         } else {
             audioBtn.style.display = 'none';
+            console.log('Audio button should be hidden');
         }
         
         this.updateUI();
@@ -554,10 +558,14 @@ class EnglishAdventureGame {
 
         // Show/hide audio button based on age group
         const audioBtn = document.getElementById('audio-btn');
+        console.log('DisplayQuestion - Age group:', this.ageGroup);
+        console.log('DisplayQuestion - Audio button:', audioBtn);
         if (this.ageGroup === '3-6') {
             audioBtn.style.display = 'inline-block';
+            console.log('DisplayQuestion - Audio button should be visible');
         } else {
             audioBtn.style.display = 'none';
+            console.log('DisplayQuestion - Audio button should be hidden');
         }
 
         // Reset controls
