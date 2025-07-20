@@ -521,6 +521,27 @@ body.dark-mode .completion-stats {
     box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
 
+/* Audio button special styling */
+#audio-btn {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+#audio-btn:hover {
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+}
+
+#audio-btn.playing {
+    background: linear-gradient(135deg, #00b894, #00a085);
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
 /* Game Navigation */
 .game-nav {
     display: flex;

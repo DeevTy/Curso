@@ -60,6 +60,7 @@ class EnglishAdventureGame {
         document.getElementById('back-to-game-progress').addEventListener('click', () => this.showGame());
 
         // Game controls
+        document.getElementById('audio-btn').addEventListener('click', () => this.playQuestionAudio());
         document.getElementById('hint-btn').addEventListener('click', () => this.showHint());
         document.getElementById('next-btn').addEventListener('click', () => this.nextQuestion());
 
@@ -542,6 +543,14 @@ class EnglishAdventureGame {
             answerContainer.appendChild(button);
         });
 
+        // Show/hide audio button based on age group
+        const audioBtn = document.getElementById('audio-btn');
+        if (this.ageGroup === '3-6') {
+            audioBtn.style.display = 'inline-block';
+        } else {
+            audioBtn.style.display = 'none';
+        }
+
         // Reset controls
         document.getElementById('hint-btn').style.display = 'inline-block';
         document.getElementById('next-btn').style.display = 'none';
@@ -620,6 +629,44 @@ class EnglishAdventureGame {
     showHint() {
         const question = this.questions[this.currentQuestionIndex];
         alert(`Hint: ${question.hint}`);
+    }
+
+    playQuestionAudio() {
+        const question = this.questions[this.currentQuestionIndex];
+        const audioBtn = document.getElementById('audio-btn');
+        
+        // Check if speech synthesis is supported
+        if ('speechSynthesis' in window) {
+            // Stop any current speech
+            window.speechSynthesis.cancel();
+            
+            // Create speech utterance
+            const utterance = new SpeechSynthesisUtterance(question.question);
+            utterance.lang = 'es-ES'; // Spanish
+            utterance.rate = 0.8; // Slightly slower for children
+            utterance.pitch = 1.1; // Slightly higher pitch for children
+            
+            // Add visual feedback
+            audioBtn.classList.add('playing');
+            audioBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Detener';
+            
+            // Handle speech end
+            utterance.onend = () => {
+                audioBtn.classList.remove('playing');
+                audioBtn.innerHTML = '<i class="fas fa-volume-up"></i> Escuchar';
+            };
+            
+            utterance.onerror = () => {
+                audioBtn.classList.remove('playing');
+                audioBtn.innerHTML = '<i class="fas fa-volume-up"></i> Escuchar';
+            };
+            
+            // Start speaking
+            window.speechSynthesis.speak(utterance);
+        } else {
+            // Fallback for browsers without speech synthesis
+            alert('Tu navegador no soporta la función de audio. La pregunta es: ' + question.question);
+        }
     }
 
     nextQuestion() {
