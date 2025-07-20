@@ -90,11 +90,10 @@ class EnglishAdventureGame {
         this.loadLevel(this.currentLevel);
         this.showScreen('game-screen');
         
-        // Hide audio button for non-3-6 age groups
+        // Show audio button for testing - always visible
         const audioBtn = document.getElementById('audio-btn');
-        if (this.ageGroup !== '3-6') {
-            audioBtn.style.display = 'none';
-        }
+        audioBtn.style.display = 'inline-block';
+        console.log('Audio button should be visible for all groups');
         
         this.updateUI();
         
@@ -550,11 +549,10 @@ class EnglishAdventureGame {
             answerContainer.appendChild(button);
         });
 
-        // Hide audio button for non-3-6 age groups
+        // Show audio button for testing - always visible
         const audioBtn = document.getElementById('audio-btn');
-        if (this.ageGroup !== '3-6') {
-            audioBtn.style.display = 'none';
-        }
+        audioBtn.style.display = 'inline-block';
+        console.log('DisplayQuestion - Audio button should be visible');
 
         // Reset controls
         document.getElementById('hint-btn').style.display = 'inline-block';
