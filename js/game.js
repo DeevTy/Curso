@@ -560,8 +560,19 @@ class EnglishAdventureGame {
 
         // Show audio button for testing - always visible
         const audioBtn = document.getElementById('audio-btn');
-        audioBtn.style.display = 'inline-block';
-        console.log('DisplayQuestion - Audio button should be visible');
+        console.log('DisplayQuestion - Audio button element:', audioBtn);
+        console.log('DisplayQuestion - Audio button display before:', audioBtn ? audioBtn.style.display : 'null');
+        
+        if (audioBtn) {
+            audioBtn.style.display = 'inline-block';
+            audioBtn.style.visibility = 'visible';
+            audioBtn.style.opacity = '1';
+            console.log('DisplayQuestion - Audio button display after:', audioBtn.style.display);
+            console.log('DisplayQuestion - Audio button visibility:', audioBtn.style.visibility);
+            console.log('DisplayQuestion - Audio button opacity:', audioBtn.style.opacity);
+        } else {
+            console.error('DisplayQuestion - Audio button not found!');
+        }
 
         // Reset controls
         document.getElementById('hint-btn').style.display = 'inline-block';
