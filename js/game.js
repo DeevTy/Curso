@@ -89,6 +89,15 @@ class EnglishAdventureGame {
         this.currentScreen = 'game';
         this.loadLevel(this.currentLevel);
         this.showScreen('game-screen');
+        
+        // Show audio button for 3-6 age group
+        const audioBtn = document.getElementById('audio-btn');
+        if (this.ageGroup === '3-6') {
+            audioBtn.style.display = 'inline-block';
+        } else {
+            audioBtn.style.display = 'none';
+        }
+        
         this.updateUI();
         
         // Mostrar mensaje de bienvenida con puntos iniciales
@@ -586,6 +595,12 @@ class EnglishAdventureGame {
         // Show next button
         document.getElementById('next-btn').style.display = 'inline-block';
         document.getElementById('hint-btn').style.display = 'none';
+        
+        // Keep audio button visible for 3-6 age group
+        const audioBtn = document.getElementById('audio-btn');
+        if (this.ageGroup === '3-6') {
+            audioBtn.style.display = 'inline-block';
+        }
         
         this.updateUI();
     }
