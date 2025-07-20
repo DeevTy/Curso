@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba Botón Audio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .test-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        #audio-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            border: none;
+            border-radius: 10px;
+            padding: 15px 25px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        #audio-btn:hover {
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        #audio-btn.playing {
+            background: linear-gradient(135deg, #00b894, #00a085);
+            animation: pulse 1s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>🧪 Prueba del Botón de Audio</h1>
+        <p>Este es un test para verificar si el botón de audio funciona correctamente.</p>
+        
+        <button id="audio-btn">
+            <i class="fas fa-volume-up"></i>
+            Escuchar Pregunta
+        </button>
+        
+        <div id="status" class="status"></div>
+        
+        <div style="margin-top: 30px;">
+            <h3>Información de Debug:</h3>
+            <div id="debug-info"></div>
+        </div>
+    </div>
+
+    <script>
+        const audioBtn = document.getElementById('audio-btn');
+        const status = document.getElementById('status');
+        const debugInfo = document.getElementById('debug-info');
+        
+        // Función para mostrar estado
+        function showStatus(message, isError = false) {
+            status.textContent = message;
+            status.className = `status ${isError ? 'error' : 'success'}`;
+        }
+        
+        // Función para mostrar información de debug
+        function showDebugInfo() {
+            const info = {
+                'Botón encontrado': !!audioBtn,
+                'Speech Synthesis disponible': 'speechSynthesis' in window,
+                'User Agent': navigator.userAgent,
+                'Ventana visible': !document.hidden
+            };
+            
+            debugInfo.innerHTML = Object.entries(info)
+                .map(([key, value]) => `<p><strong>${key}:</strong> ${value}</p>`)
+                .join('');
+        }
+        
+        // Mostrar información de debug al cargar
+        showDebugInfo();
+        
+        // Función para reproducir audio
+        function playQuestionAudio() {
+            const question = "¿De qué color es el sol?";
+            const audioBtn = document.getElementById('audio-btn');
+            
+            if ('speechSynthesis' in window) {
+                // Detener cualquier audio actual
+                window.speechSynthesis.cancel();
+                
+                // Crear utterance
+                const utterance = new SpeechSynthesisUtterance(question);
+                utterance.lang = 'es-ES';
+                utterance.rate = 0.8;
+                utterance.pitch = 1.1;
+                
+                // Feedback visual
+                audioBtn.classList.add('playing');
+                audioBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Detener';
+                
+                // Manejar fin del audio
+                utterance.onend = () => {
+                    audioBtn.classList.remove('playing');
+                    audioBtn.innerHTML = '<i class="fas fa-volume-up"></i> Escuchar Pregunta';
+                    showStatus('Audio reproducido correctamente');
+                };
+                
+                utterance.onerror = (event) => {
+                    audioBtn.classList.remove('playing');
+                    audioBtn.innerHTML = '<i class="fas fa-volume-up"></i> Escuchar Pregunta';
+                    showStatus(`Error al reproducir audio: ${event.error}`, true);
+                };
+                
+                // Iniciar audio
+                window.speechSynthesis.speak(utterance);
+                showStatus('Reproduciendo audio...');
+            } else {
+                showStatus('Tu navegador no soporta la función de audio', true);
+            }
+        }
+        
+        // Event listener para el botón
+        audioBtn.addEventListener('click', playQuestionAudio);
+        
+        // Mostrar estado inicial
+        showStatus('Botón listo para probar. Haz clic para escuchar.');
+    </script>
+</body>
+</html> 
